@@ -8,8 +8,11 @@ These will replace built-in indicators without breaking current strategy since .
 GE_RSI :
 
     indicatorName.result: RSI value. 
-    indicatorName.recommendation: 'short', 'long', or false. Based on the settings.
-    indicatorName.short_counter:
+    indicatorName.short_counter & .long_counter: count the persistence for RSI violations.
+    indicatorName.recommendation: 'short', 'long', or false. 
+                                RSI must persist past the persistence threshold for a 'long' or 'short' reco.     
+                                Reco will return to false as soon as RSI is not violated.
+                                
     Strat must pass the following settings to the indicator:
     {
       interval: this.settings.interval, // this.settings.whateverYourTomlFileCallsThese
