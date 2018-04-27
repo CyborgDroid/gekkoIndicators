@@ -8,7 +8,7 @@ These will replace built indicators without breaking current strategy since .res
 GE_RSI :
 
     indicatorName.result: RSI value. 
-    indicatorName.recommendation: 'short' or 'long' based on the settings.
+    indicatorName.recommendation: 'short', 'long', or false. Based on the settings.
     indicatorName.short_counter:
     Strat must pass the following settings to the indicator:
     {
