@@ -3,7 +3,7 @@ Custom gekko indicators for cryptocurrency trading
 
 When writting long strategies, the current indicators add unnecessary complexity. Having the basic indicator logic in the indicator itself helps clean the strategy logic making it more readable and easier to improve.
 
-These will replace built indicators without breaking current strategy since .result is still the same. However, you must at a minimum, add the settings.
+These will replace built-in indicators without breaking current strategy since .result method is still the same. However, you must at a minimum, add the settings.
 
 GE_RSI :
 
