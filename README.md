@@ -5,7 +5,8 @@ When writting long strategies, the current indicators add unnecessary complexity
 
 These will replace built indicators without breaking current strategy since .result is still the same. However, you must at a minimum, add the settings.
 
-GE_RSI : 
+GE_RSI :
+
     indicatorName.result: RSI value. 
     indicatorName.recommendation: 'short' or 'long' based on the settings.
     indicatorName.short_counter:
