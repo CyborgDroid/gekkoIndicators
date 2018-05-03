@@ -20,3 +20,15 @@ GE_RSI :
       sell: this.settings.sell,
       persistence: this.settings.persistence
     }
+
+GE_EMA_updown & GE_DEMA_updown:
+
+    indicatorName.result: EMA value
+    indicatorName.updown: up or down relative to prior value
+    indicatorName.change: % change relative to prior value
+    
+    Strat must pass the following settings to the indicator:
+    {
+        weight: 50,
+        min_change: 0.0001 // min change in percent relative to prior value, must be very small.
+    }
