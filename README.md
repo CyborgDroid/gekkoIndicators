@@ -32,3 +32,15 @@ GE_EMA_updown & GE_DEMA_updown:
         weight: this.settings.weight, // ex: 50, 100, etc.
         min_change: this.settings.min_change // ex: 0.0001, min change in percent relative to prior value. zero to ignore limitation.
     }
+
+GE_zscore:
+
+    indicatorName.zscore = zscore value
+    indicatorName.violation = true / false. Whether zscore is greater than tolerance.
+    
+     Strat must pass the following settings to the indicator:
+    {
+      interval: this.settings.interval, // the longer the better to detect anomalies.
+      z_tolerance: this.settings.z_tolerance, // value typically 1.5, 2 or 3 but could be set higher.
+      ignore_outliers: this.settings.ignore_outliers // true or false. To avoid including outliers in the calculation of the mean and standard deviation. I suggest true.
+    }
