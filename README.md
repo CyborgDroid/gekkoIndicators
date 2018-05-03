@@ -29,6 +29,6 @@ GE_EMA_updown & GE_DEMA_updown:
     
     Strat must pass the following settings to the indicator:
     {
-        weight: 50,
-        min_change: 0.0001 // min change in percent relative to prior value, must be very small.
+        weight: this.settings.weight, // ex: 50, 100, etc.
+        min_change: this.settings.min_change // ex: 0.0001, min change in percent relative to prior value. zero to ignore limitation.
     }
