@@ -21,8 +21,8 @@ var Indicator = function(config) {
 Indicator.prototype.update = function(price) {
   // The first time we can't calculate based on previous
   // ema, because we haven't calculated any yet.
-  if(this.result === false)
-    this.result = price;
+  if(this.prev_EMA === false)
+    this.prev_EMA = price;
 
   this.age++;
   this.calculate(price);
@@ -47,7 +47,9 @@ Indicator.prototype.calculate = function(price) {
   if (this.prev_EMA && this.cur_EMA && (Math.abs(this.cur_EMA - this.prev_EMA) / this.prev_EMA) > this.min_change){
     this.updown = this.prev_EMA > this.cur_EMA ? 'down' : 'up';
     this.change = this.cur_EMA / this.prev_EMA;
-  } else {this.result = false;}
+  } else {
+    this.result = false;
+  }
 
   //console.log('EMA result: ', this.result, 'EMA updown: ', this.updown);
 

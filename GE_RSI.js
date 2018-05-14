@@ -1,5 +1,5 @@
 // required indicators
-var SMMA = require('./SMMA.js');
+var SMMA = require('./GE_SMMA.js');
 
 var Indicator = function (settings) {
   this.input = 'candle';
