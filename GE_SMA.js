@@ -10,7 +10,6 @@ var Indicator = function(interval) {
 }
 
 Indicator.prototype.update = function(price) {
-  console.log('*** GE_SMA ****');
   //add price to beginning of array
   this.prices.unshift(price);
   //get oldest price, if it's greater than the interval, remove it from calculations
@@ -22,10 +21,6 @@ Indicator.prototype.update = function(price) {
     //add new price, then subtract oldest price and remove it from array
     this.sum += price - this.prices.pop();
   }
-  
-//   console.log('prices: ', this.prices);
-//   console.log('age: ', this.age);
-//   console.log('SMA: ', this.result);
 }
 
 module.exports = Indicator;
