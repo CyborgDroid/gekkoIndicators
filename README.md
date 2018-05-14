@@ -5,6 +5,10 @@ When writting long strategies, the current indicators add unnecessary complexity
 
 These will replace built-in indicators without breaking current strategy since .result method is still the same. However, you must at a minimum, add the settings.
 
+GE SMA & SMMA:
+    
+    SMMA doesn't grow to infinity saving all prices like the built-in SMMA, otherwise the same functionality.
+
 GE_RSI :
 
     indicatorName.result: RSI value. 
