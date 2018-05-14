@@ -10,15 +10,14 @@ var Indicator = function (weight) {
 }
 
 Indicator.prototype.update = function (price) {
-  if (this.sma.beyond_first_complete_run){
+  if (this.sma.complete_data){
     this.result = (this.result * (this.weight - 1) + price) / this.weight;
   } else {
     this.sma.update(price)
-    if (self.sma.prices.length === self.weight){
+    if (this.sma.prices.length === this.weight){
       this.result = this.sma.result
     }
   }
-
 }
 
 module.exports = Indicator;
