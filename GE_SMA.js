@@ -22,7 +22,6 @@ Indicator.prototype.update = function(price) {
     this.sum += (price - tail);
     this.result = (this.sum / this.interval);
   }
-  console.log('GE sum: ', this.sum);
 }
 
 module.exports = Indicator;
