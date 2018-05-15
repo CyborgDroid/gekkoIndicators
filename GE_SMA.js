@@ -15,12 +15,12 @@ Indicator.prototype.update = function(price) {
   if (!this.complete_data){
     this.complete_data = this.prices.length == this.interval;
     this.sum += price - 0;
-    this.result = (this.sum / this.prices.length);
+    this.result = this.sum / this.prices.length;
   } else {
     //add new price, then subtract oldest price and remove it from array
     let tail = this.prices.pop();
-    this.sum += (price - tail);
-    this.result = (this.sum / this.interval);
+    this.sum += price - tail;
+    this.result = this.sum / this.interval;
   }
 }
 
