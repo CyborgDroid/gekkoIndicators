@@ -12,16 +12,17 @@ var Indicator = function(interval) {
 Indicator.prototype.update = function(price) {
   //add price to beginning of array
   this.prices.unshift(price);
-  console.log(this.prices.length)
   if (!this.complete_data){
     this.complete_data = this.prices.length == this.interval;
-    this.sum += price;
+    this.sum += price - 0;
     this.result = (this.sum / this.prices.length);
   } else {
     //add new price, then subtract oldest price and remove it from array
-    this.sum += price - this.prices.pop();
-    this.result = this.sum / this.interval;
+    let tail = this.prices.pop();
+    this.sum += (price - tail);
+    this.result = (this.sum / this.interval);
   }
+  console.log('GE sum: ', this.sum);
 }
 
 module.exports = Indicator;
