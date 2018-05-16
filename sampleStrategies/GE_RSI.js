@@ -1,6 +1,6 @@
 /*
 
- RSI - CyborgDroid
+ RSI - CyborgDroid - simplified file compared to gekko default to allow easier customization of RSI based strategies
 
 */ 
 
