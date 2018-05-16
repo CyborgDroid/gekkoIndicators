@@ -2,14 +2,15 @@
 var SMMA = require('./GE_SMMA.js');
 
 var Indicator = function (settings) {
+  console.log(settings);
   this.input = 'candle';
   this.lastClose = null;
-  this.weight = settings.interval;
+  this.interval = settings.interval;
   this.sell = settings.sell;
   this.buy = settings.buy;
   this.persistence = settings.persistence;
-  this.avgU = new SMMA(this.weight);
-  this.avgD = new SMMA(this.weight);
+  this.avgU = new SMMA(this.interval);
+  this.avgD = new SMMA(this.interval);
   this.u = 0;
   this.d = 0;
   this.rs = 0;
@@ -52,7 +53,7 @@ Indicator.prototype.update = function (candle) {
   } else if (this.avgD.result === 0) {
     this.result = 0;
   }
-
+  this.result = this.result.toFixed(2);
   //count the RSI violations and recommend an action based on the settings
 
   if (this.result > this.sell){
