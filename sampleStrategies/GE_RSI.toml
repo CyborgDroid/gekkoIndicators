@@ -1,0 +1,5 @@
+interval = 14
+
+buy = 30
+sell = 70
+persistence = 1
