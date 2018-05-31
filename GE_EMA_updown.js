@@ -1,7 +1,7 @@
 ﻿/*
 
 config = {
-    weight: 10,
+    interval: 10,
     min_change: 0.0001 // min change in percent, must be very small.
 }
 
@@ -9,8 +9,10 @@ config = {
 
 var Indicator = function(config) {
   this.input = 'price';
-  this.weight = config.weight;
-  this.min_change = config.min_change;
+  if(config.hasOwnProperty('interval')) this.interval = config.interval;
+  else this.interval = 5;
+  if(config.hasOwnProperty('min_change')) this.min_change = config.min_change;
+  else this.min_change = 0;
   this.prev_EMA = false;
   this.change = false;
   this.result = false;
@@ -34,8 +36,8 @@ Indicator.prototype.update = function(price) {
 //  EMA = Price(t) * k + EMA(y) * (1 – k)
 //  t = today, y = yesterday, N = number of days in EMA, k = 2 / (N+1)
 Indicator.prototype.calculate = function(price) {
-  // weight factor
-  var k = 2 / (this.weight + 1);
+  // interval factor
+  var k = 2 / (this.interval + 1);
 
   // yesterday
   var y = this.prev_EMA;

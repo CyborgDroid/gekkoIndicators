@@ -2,13 +2,16 @@
 var SMMA = require('./GE_SMMA.js');
 
 var Indicator = function (settings) {
-  console.log(settings);
   this.input = 'candle';
   this.lastClose = null;
-  this.interval = settings.interval;
-  this.sell = settings.sell;
-  this.buy = settings.buy;
-  this.persistence = settings.persistence;
+  if (settings.hasOwnProperty('interval')) this.interval = settings.interval;
+  else this.interval = 10;
+  if (settings.hasOwnProperty('sell')) this.sell = settings.sell;
+  else this.sell = 70;
+  if (settings.hasOwnProperty('buy')) this.buy = settings.buy;
+  else this.buy = 30;
+  if (settings.hasOwnProperty('persistence')) this.persistence = settings.persistence;
+  else this.persistence = 0;
   this.avgU = new SMMA(this.interval);
   this.avgD = new SMMA(this.interval);
   this.u = 0;
@@ -17,14 +20,14 @@ var Indicator = function (settings) {
   this.result = 0;
   this.age = 0;
   //new settings
-  this.recommendation = false;
+  this.recommendation = '';
   this.short_counter = 0;
   this.long_counter = 0;
 }
 
 Indicator.prototype.update = function (candle) {
   var currentClose = candle.close;
-  this.recommendation = false;
+  this.recommendation = '';
   if (this.lastClose === null) {
     // Set initial price to prevent invalid change calculation
     this.lastClose = currentClose;
@@ -65,7 +68,6 @@ Indicator.prototype.update = function (candle) {
 
 if (this.short_counter > this.persistence) this.recommendation = 'short';
 if (this.long_counter > this.persistence) this.recommendation = 'long';
-
 this.lastClose = currentClose;
 this.age++;
 }
