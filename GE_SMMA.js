@@ -1,6 +1,6 @@
 // SMMA does not grow to infinity like original gekko indicator
 
-var SMA = require('./GE_SMA');
+var SMA = require('./GE_SMA.js');
 
 var Indicator = function (weight) {
   this.input = 'price';
