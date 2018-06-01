@@ -1,7 +1,7 @@
 # gekkoIndicators
 Custom gekko indicators for cryptocurrency trading
 
-When writting complex strategies, the current indicators add unnecessary complexity. Having the basic indicator logic in the indicator itself helps clean the strategy logic making it more readable and easier to improve.
+When writting complex strategies, the built-in gekko indicators add unnecessary complexity. Having the basic indicator logic in the indicator itself helps clean the strategy logic making it more readable and easier to improve.
 
 All indicators have:
 
