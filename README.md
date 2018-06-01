@@ -9,7 +9,7 @@ All indicators have:
     this.result:            raw indicator result
     Default settings: automatically applied if the settings are not passed to the indicator.
 
-An RSI strategy can literally have one line of code, making complex logic easy:
+An RSI strategy logic can literally have one line of code, making complex logic easy:
 
     this.advice(this.indicators.RSI.recommendation);
 
