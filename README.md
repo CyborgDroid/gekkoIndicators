@@ -55,8 +55,10 @@ GE_BB:
       long_persistence:                         // DEFAULT : 0
       
     }
+    
+MC_BB is same as GE_BB however, the recommendation will wait and trigger after the price closes inside the bollinger band range.
 
-GE MACD:
+GE_MACD:
 
     this.recommendation = 'short', 'long', or ''. Wether histogram is going up & negative, or down and positive (or neither).
     this.result         =   MACD - signal
