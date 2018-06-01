@@ -41,7 +41,7 @@ GE_EMA_updown & GE_DEMA_updown:
         min_change: this.settings.min_change    //  DEFAULT : 0 (no change). This must be a tiny number
     }
 
-GE_BB:
+GE_BB: (Bollinger Bands & Z-score)
 
     this.recommendation = 'short', 'long', or ''. Whether zscore is greater than tolerance.
     this.result         = zscore. Can be used to identify anomalies with price, # trades, volume, or anything else.
@@ -79,4 +79,4 @@ GE_MACD:
     
 GE SMA & SMMA:
     
-    SMMA doesn't grow to infinity saving all prices like the built-in SMMA, otherwise the same functionality.
+    SMMA doesn't grow to infinity saving all prices like the built-in GEKKO SMMA, otherwise the same functionality. No recommendation.
