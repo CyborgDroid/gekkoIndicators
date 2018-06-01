@@ -56,7 +56,7 @@ GE_BB: (Bollinger Bands & Z-score)
       
     }
     
-MC_BB is same as GE_BB however, the recommendation will wait and trigger after the price closes inside the bollinger band range.
+MC_BB is same as GE_BB, however, the recommendation triggers until after the price closes inside the bollinger band range.
 
 GE_MACD:
 
@@ -79,4 +79,5 @@ GE_MACD:
     
 GE SMA & SMMA:
     
-    SMMA doesn't grow to infinity saving all prices like the built-in GEKKO SMMA, otherwise the same functionality. No recommendation.
+    SMMA doesn't grow to infinity saving all prices like the built-in GEKKO SMMA, otherwise the same functionality. 
+    No recommendation.
