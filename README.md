@@ -4,12 +4,14 @@ Custom gekko indicators for cryptocurrency trading
 When writting complex strategies, the current indicators add unnecessary complexity. Having the basic indicator logic in the indicator itself helps clean the strategy logic making it more readable and easier to improve.
 
 All indicators have:
-1. this.recommendation   'short' or 'long'
-2. this.result            raw indicator result
-3. Default settings that are automatically applied if the settings are not passed to the indicator.
+
+    this.recommendation:   'short' or 'long'
+    this.result:            raw indicator result
+    Default settings: automatically applied if the settings are not passed to the indicator.
 
 An RSI strategy can literally have one line of code, making complex logic easy:
-this.advice(this.indicators.RSI.recommendation);
+
+    this.advice(this.indicators.RSI.recommendation);
 
 GE SMA & SMMA:
     
