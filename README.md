@@ -43,7 +43,7 @@ GE_EMA_updown & GE_DEMA_updown:
 
 GE_BB: (Bollinger Bands & Z-score)
 
-    this.recommendation = 'short', 'long', or ''. Whether zscore is greater than tolerance.
+    this.recommendation = 'short', 'long', or ''. Whether zscore is greater than tolerance limits.
     this.result         = zscore. Can be used to identify anomalies with price, # trades, volume, or anything else.
     
     Strat should pass the following settings to the indicator (or default will be applied):
@@ -60,7 +60,9 @@ MC_BB is same as GE_BB, however, the recommendation triggers until after the pri
 
 GE_MACD:
 
-    this.recommendation = 'short', 'long', or ''. Wether histogram is going up & negative, or down and positive (or neither).
+    this.recommendation = 'short' = histogram slope is positive & value is negative
+                          'long'  = histogram slope is negative & value is positive
+                          ''      = neither
     this.result         =   MACD - signal
     
     this.short.result       short EMA
