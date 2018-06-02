@@ -7,6 +7,8 @@ var Indicator = function (weight) {
   this.sma = new SMA(weight);
   this.weight = weight;
   this.result = 0;
+  //for multitimframe inception:
+  this.update = this.update.bind(this);
 }
 
 Indicator.prototype.update = function (price) {

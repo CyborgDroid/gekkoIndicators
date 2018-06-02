@@ -17,6 +17,8 @@ var Indicator = function(config) {
   this.min_change = config.min_change;
   this.inner = new EMA(config.weight);
   this.outer = new EMA(config.weight);
+  //for multitimframe inception:
+  this.update = this.update.bind(this);
 }
 
 // add a price and calculate the EMAs and

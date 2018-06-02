@@ -15,6 +15,8 @@ var Indicator = function(config) {
   this.long_persistence = config.long_persistence;
   this.short_persistence = config.short_persistence;
   this.recommendation = '';
+  //for multitimframe inception:
+  this.update = this.update.bind(this);
 }
 
 Indicator.prototype.update = function(candle) {

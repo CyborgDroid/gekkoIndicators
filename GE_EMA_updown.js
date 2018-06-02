@@ -18,6 +18,8 @@ var Indicator = function(config) {
   this.result = false;
   this.updown = '';
   this.age = 0;
+  //for multitimframe inception:
+  this.update = this.update.bind(this);
 }
 
 Indicator.prototype.update = function(price) {

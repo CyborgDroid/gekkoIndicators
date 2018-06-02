@@ -23,9 +23,12 @@ var Indicator = function (settings) {
   this.recommendation = '';
   this.short_counter = 0;
   this.long_counter = 0;
+  //for multitimframe inception:
+  this.update = this.update.bind(this);
 }
 
 Indicator.prototype.update = function (candle) {
+  //console.log('UPDATE THIS: \n', this);
   var currentClose = candle.close;
   this.recommendation = '';
   if (this.lastClose === null) {

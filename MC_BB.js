@@ -27,6 +27,8 @@ var Indicator = function(BBSettings) {
     this.recommendation = '';
     this.short_counter = 0;
     this.long_counter = 0;
+    //for multitimframe inception:
+    this.update = this.update.bind(this);
   }
 
   Indicator.prototype.update = function(price) {

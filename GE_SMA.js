@@ -7,6 +7,8 @@ var Indicator = function(interval) {
   this.result = 0;
   this.sum = 0;
   this.complete_data = false;
+  //for multitimframe inception:
+  this.update = this.update.bind(this);
 }
 
 Indicator.prototype.update = function(price) {
