@@ -1,5 +1,7 @@
-profitRatio = 2
 start_whenever = false
+
+#ProfitRatio=0 disables TakeProfit
+profitRatio = 2
 
 [RSI]
 candle_size = 30

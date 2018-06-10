@@ -71,7 +71,7 @@ strat.update = function(candle) {
         this.trend.recommendation = 'long';
     }
     if (this.trend.last_action === 'buy') { 
-        if (candle.close > this.takeProfit) {
+        if (candle.close > this.takeProfit && this.takeProfit !== 0) {
             this.trend.recommendation = 'short';
         }
     }
