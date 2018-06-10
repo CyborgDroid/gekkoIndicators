@@ -3,13 +3,18 @@
 This strategy runs an RSI plus a TakeProfit. 
 The RSI is calculated every X minues (30, 15, etc) 
 The TakeProfit is checked every minute.
+start_whenever means that the candles start whenever (gekko default),
+set start_whenever=false so candles for the RSI start on the industry standard of
+0 15, 30, 45 for 15m candles, etc.
 
 */
 
-var log = require('../core/log');
-var util = require('../core/util.js');
-var config = util.getConfig();
-var _ = require('lodash');
+const log = require('../core/log');
+const util = require('../core/util.js');
+const config = util.getConfig();
+const _ = require('lodash');
+const moment = require('moment');
+
 
 var CandleBatcher = require('../core/candleBatcher');
 var RSI = require('../strategies/indicators/GE_RSI.js');
@@ -27,7 +32,7 @@ strat.init = function() {
   // lets throw if the settings are wrong
   if (config.tradingAdvisor.candleSize !== 1) {
     throw "This strategy must run with candleSize=1";
-  }
+  } 
 
   this.myIndicators = {};
   this.trend = {
@@ -50,11 +55,19 @@ strat.init = function() {
 
 /////////////////////////////////////////////////////////////////////
 strat.update = function(candle) {
-    // write 1 minute candle to larger candle batchers
-    this.batcher.write([candle]);
-    if(this.myIndicators.RSI.result >= this.settings.RSI.sell){
+    // write 1 minute candle to larger candle batchers if starting whenever
+    // else wait until the minutes are divisible by the candlesize before starting
+    if (this.settings.start_whenever){
+        this.batcher.write([candle]);
+    } else if (parseFloat(moment(candle.start).format('mm')) % this.settings.RSI.candle_size === 0){
+        this.settings.start_whenever = true;
+        console.log('candle batching starts at this time:' , candle.start.format())
+        this.batcher.write([candle]);
+    }
+    
+    if(this.trend.last_action === 'buy' && this.myIndicators.RSI.result >= this.settings.RSI.sell){
         this.trend.recommendation = 'short';
-    } else if (this.myIndicators.RSI.result <= this.settings.RSI.buy && this.myIndicators.RSI.result > 0){
+    } else if (this.trend.last_action !== 'buy' && this.myIndicators.RSI.result <= this.settings.RSI.buy && this.myIndicators.RSI.result > 0){
         this.trend.recommendation = 'long';
     }
     if (this.trend.last_action === 'buy') { 
@@ -78,12 +91,14 @@ strat.check = function(candle) {
 strat.onTrade = function(event){
     if(event.action === 'buy'){
         this.takeProfit = event.price * this.settings.profitRatio;
-        log.debug(event.date.format(), ' buy at: ', event.price, 
+        //add one minute to the candle start to get candle end for 1m candles
+        console.log(event.date.format().add(1,'m'), ' buy at: ', event.price, 
         ' | takeProfit: ' + this.takeProfit.toFixed(8));
         this.trend.action_price = event.price;
 
     } else {
-        log.debug(event.date.format(), ' sell at ' , event.price,
+        //add one minute to the candle start to get candle end for 1m candles
+        console.log(event.date.format().add(1,'m'), ' sell at ' , event.price,
         ' | P/L: ' + ((event.price - this.trend.action_price)/this.trend.action_price).toFixed(3));
     }
     this.trend.last_action = event.action;

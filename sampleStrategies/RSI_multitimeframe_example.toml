@@ -1,4 +1,5 @@
 profitRatio = 2
+start_whenever = false
 
 [RSI]
 candle_size = 30
