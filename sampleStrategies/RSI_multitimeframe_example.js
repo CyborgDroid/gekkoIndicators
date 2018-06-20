@@ -92,13 +92,13 @@ strat.onTrade = function(event){
     if(event.action === 'buy'){
         this.takeProfit = event.price * this.settings.profitRatio;
         //add one minute to the candle start to get candle end for 1m candles
-        console.log(event.date.format().add(1,'m'), ' buy at: ', event.price, 
+        console.log(moment(event.date).add(1,'m').format(), ' buy at: ', event.price, 
         ' | takeProfit: ' + this.takeProfit.toFixed(8));
         this.trend.action_price = event.price;
 
     } else {
         //add one minute to the candle start to get candle end for 1m candles
-        console.log(event.date.format().add(1,'m'), ' sell at ' , event.price,
+        console.log(moment(event.date).add(1,'m').format(), ' sell at ' , event.price,
         ' | P/L: ' + ((event.price - this.trend.action_price)/this.trend.action_price).toFixed(3));
     }
     this.trend.last_action = event.action;
